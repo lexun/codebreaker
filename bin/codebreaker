@@ -3,4 +3,9 @@
 $:<< File.expand_path('../../lib', __FILE__)
 require 'codebreaker'
 
-Codebreaker::Game.new(STDOUT).start
+game = Codebreaker::Game.new(STDOUT)
+game.start('1234')
+
+while guess = gets.chomp
+  game.guess(guess)
+end
