@@ -15,6 +15,13 @@ module Codebreaker
         expect(output).to receive(:puts).with('Enter guess:')
         game.start('1234')
       end
+
+      context "without a predefined secret" do
+        it "should set the secret to a string of four random numbers" do
+          game.start
+          expect(game.secret).to match(/\d{4}/)
+        end
+      end
     end
 
     describe "#guess" do

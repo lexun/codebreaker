@@ -16,11 +16,17 @@ Given /^I am not yet playing$/ do
 end
 
 When /^I start a new game$/ do
-  Codebreaker::Game.new(output).start('1234')
+  Codebreaker::Game.new(output).start
 end
 
 Then /^I should see "([^"]*)"$/ do |message|
   output.messages.should include(message)
+end
+
+Then /^the secret should be four random numbers$/ do
+  @game = Codebreaker::Game.new(output)
+  @game.start
+  @game.secret.should match(/\d{4}/)
 end
 
 Given /^the secret code is "([^"]*)"$/ do |secret|
