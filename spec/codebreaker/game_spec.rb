@@ -2,8 +2,8 @@ require 'spec_helper'
 
 module Codebreaker
   describe Game do
-      let(:output)  { double('output').as_null_object }
-      let(:game) { Game.new(output) }
+    let(:output)  { double('output').as_null_object }
+    let(:game) { Game.new(output) }
 
     describe "#start" do
       it "sends a welcome message" do
@@ -18,41 +18,10 @@ module Codebreaker
     end
 
     describe "#guess" do
-      before(:each) { game.start('1234') }
-
-      context "with no matches" do
-        it "sends a mark with ''" do
-          expect(output).to receive(:puts).with('')
-          game.guess('5555')
-        end
-      end
-
-      context "with 1 number match" do
-        it "sends a mark with '-'" do
-          expect(output).to receive(:puts).with('-')
-          game.guess('2555')
-        end
-      end
-
-      context "with 1 exact match" do
-        it "sends a mark with '+'" do
-          expect(output).to receive(:puts).with('+')
-          game.guess('1555')
-        end
-      end
-
-      context "with 2 number matches" do
-        it "sends a mark with '--'" do
-          expect(output).to receive(:puts).with('--')
-          game.guess('2355')
-        end
-      end
-
-      context "with 1 number match and 1 exact match following" do
-        it "sends a mark with the symbols in the right order: '+-'" do
-          expect(output).to receive(:puts).with('+-')
-          game.guess('2535')
-        end
+      it "sends the mark to output" do
+        game.start('1234')
+        expect(output).to receive(:puts).with('++++')
+        game.guess('1234')
       end
     end
   end
