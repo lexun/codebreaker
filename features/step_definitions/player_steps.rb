@@ -23,10 +23,10 @@ Then /^I should see "([^"]*)"$/ do |message|
   output.messages.should include(message)
 end
 
-Then /^the secret should be four random numbers$/ do
+Then /^the secret should be four numbers less than six$/ do
   @game = Codebreaker::Game.new(output)
   @game.start
-  @game.secret.should match(/\d{4}/)
+  @game.secret.should match(/[1-6]{4}/)
 end
 
 Given /^the secret code is "([^"]*)"$/ do |secret|

@@ -1,6 +1,6 @@
 module Codebreaker
   class Game
-    attr_accessor :secret
+    attr_reader :secret
 
     def initialize(output)
       @output = output
@@ -21,7 +21,7 @@ module Codebreaker
     private
 
     def random
-      (1000 + rand(8999)).to_s
+      4.times.collect { rand(5) + 1 }.join('')
     end
   end
 end

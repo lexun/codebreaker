@@ -17,9 +17,9 @@ module Codebreaker
       end
 
       context "without a predefined secret" do
-        it "should set the secret to a string of four random numbers" do
+        it "should set the secret to four random numbers between 1 and 6" do
           game.start
-          expect(game.secret).to match(/\d{4}/)
+          expect(game.secret).to match(/[1-6]{4}/)
         end
       end
     end
